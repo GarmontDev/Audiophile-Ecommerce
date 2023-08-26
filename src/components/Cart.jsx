@@ -33,7 +33,6 @@ const Cart = ({cart, setCart}) => {
         return totalPrice
     }
 
-
     return(
         <>
             <div className="bg-white rounded-lg pl-6 pr-6 h-auto w-auto ml-4 mr-4">
@@ -45,9 +44,7 @@ const Cart = ({cart, setCart}) => {
                     trigger={
                         <button 
                             className="text-right pl-8 text-[#979797] text-xs underline" 
-                            onClick={() => {
-                                setCart([])
-                            }}
+                            onClick={() => setCart([])}
                         >
                             Remove all
                         </button>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import IconArrowRight from '../assets/icons/IconArrowRight'
 
 const categories = [
@@ -14,6 +15,7 @@ const CategoriesGrid = ({setPage, mobileMenuIsOpen, setMobileMenuIsOpen}) => {
             setMobileMenuIsOpen(false)
         }
     }
+
     return(
         <>
             {categories.map((category, index) =>

@@ -1,6 +1,12 @@
+import { useEffect } from "react"
 import CategoryItem from "./CategoryItem"
 
 const Categories = ({ data, page, setPage, setProductSelected }) => { 
+
+    useEffect(() => {
+        window.scrollTo({top:0, behavior: 'smooth'})
+    }, [])
+
     return(
         <>
             {page != "ProductPage" ? 

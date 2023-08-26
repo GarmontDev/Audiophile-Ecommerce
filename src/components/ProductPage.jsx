@@ -20,8 +20,7 @@ const ProductPage = ({item, setPage, setProductSelected, cart, setCart}) => {
             price: item.price,
             numberOfItems: numberOfItems
         }
-        console.log(newItem)
-        //setCart([newItem])
+
         setCart(cart2 => [...cart, newItem])
 
         alert(newItem.name +" added to the cart!")
@@ -106,7 +105,7 @@ const ProductPage = ({item, setPage, setProductSelected, cart, setCart}) => {
                             <div className="text-center font-bold tracking-widest text-xl pt-4">{element.name}</div>
                             <button 
                                 className="see-product-orange-btn m-auto mt-6" 
-                                onClick={() => {setProductSelected(element.slug)}}
+                                onClick={() => {setProductSelected(element.slug), window.scrollTo({top:0, behavior: 'smooth'})}}
                             >
                                 SEE PRODUCT
                             </button>
