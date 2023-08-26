@@ -436,9 +436,9 @@
     "slug": "zx9-speaker",
     "name": "ZX9 Speaker",
     "image": {
-      "mobile": "./assets/product-zx9-speaker/mobile/image-product.jpg",
-      "tablet": "./assets/product-zx9-speaker/tablet/image-product.jpg",
-      "desktop": "./assets/product-zx9-speaker/desktop/image-product.jpg"
+      "mobile": "./assets/product-zx9-speaker/mobile/image-product.png",
+      "tablet": "./assets/product-zx9-speaker/tablet/image-product.png",
+      "desktop": "./assets/product-zx9-speaker/desktop/image-product.png"
     },
     "category": "speakers",
     "categoryImage": {

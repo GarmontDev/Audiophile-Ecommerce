@@ -1,38 +1,49 @@
 @tailwind base;
 @tailwind components;
 
-.wrapper{
+body{
     @apply
-    bg-[#141414] 
-    h-auto w-full 
-    pl-20 pr-20
+    font-manrope
 }
 
-.header{
+.shop-btn{
     @apply
-    pt-10
-    flex justify-between
+    flex justify-center 
+    font-semibold text-sm text-gray-400
+    uppercase
+    pb-4 hover:text-orange-500
 }
 
-.menu{
-    @apply
-    pb-10 pr-20
-    text-white
-}
-
-.cart-icon{
+.see-product-orange-btn{
     @apply
     text-white
-    flex justify-end
+    text-base font-semibold tracking-wider 
+    pl-6 pr-6 pt-3 pb-3
+    bg-[#D87D4A] 
+    hover:bg-[#FBAF85]
 }
 
-.header-spacer{
+.see-product-black-btn{
     @apply
-    h-px w-full bg-gray-200 border-0
+    rounded-sm font-semibold text-sm tracking-widest
+    hover:text-black hover:bg-white border-[0.1rem] border-black
+    text-white bg-black 
+    p-3 w-[10rem] h-12 
+    flex justify-center
 }
 
-.banner-xl{
+.see-product-transparent-btn{
     @apply
-    text-white font-extrabold text-4xl
-    grid grid-cols-2 p-20
+    rounded-sm font-semibold text-sm tracking-widest
+    hover:text-white hover:bg-black border-[0.12rem] border-black
+    text-black bg-transparent 
+    p-3 w-[10rem] h-12 
+    flex justify-center
 }
+
+
+
+@media screen and (min-width: 640px) {
+  
+        
+ }
