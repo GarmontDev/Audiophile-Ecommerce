@@ -6,10 +6,16 @@ const ProductPage = ({item, setPage, setProductSelected, cart, setCart}) => {
     const [numberOfItems, setNumberOfItems] = useState(1)
 
     useEffect(() => {
+        if (numberOfItems < 1){
+            setNumberOfItems(1)
+        }
+    }, [numberOfItems])
+
+    useEffect(() => {
         window.scrollTo({top:0, behavior: 'smooth'})
     }, [])
 
-    function handleAddToCart(){    
+    function handleAddToCart(){   
         var newItem = {
             slug: item.slug,
             name: item.name,
@@ -20,10 +26,17 @@ const ProductPage = ({item, setPage, setProductSelected, cart, setCart}) => {
             price: item.price,
             numberOfItems: numberOfItems
         }
+  
+        if (cart.length > 0){
+            setCart(cart.map((product, index) => (product.slug === item.slug)
+                ? {...product, numberOfItems: product.numberOfItems + numberOfItems}
+                : product
+            ))
+        }else{
+            setCart(cart2 => [...cart, newItem])
+        }
 
-        setCart(cart2 => [...cart, newItem])
-
-        alert(newItem.name +" added to the cart!")
+        alert(numberOfItems + "  " +newItem.name +" added to the cart!")
     }
 
     return(

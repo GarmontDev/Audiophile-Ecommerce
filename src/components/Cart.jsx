@@ -7,6 +7,9 @@ const Cart = ({cart, setCart}) => {
 
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
 
+    const [openClearCartMsg, setOpenClearCartMsg] = useState(false);  
+    const closeClearCartMsg = () => setOpenClearCartMsg(false);
+
     useEffect(() => {
         setCartTotalPrice(calculateCartTotal())
         setItemsInCart(cart.length)
@@ -33,6 +36,14 @@ const Cart = ({cart, setCart}) => {
         return totalPrice
     }
 
+    function clearCart(){
+        let clearItemsConfirmation = confirm("Clear all the items from the cart?")
+        if (clearItemsConfirmation){
+            setCart(emptyCart => [])
+            setOpenClearCartMsg(true)
+        }
+    }
+
     return(
         <>
             <div className="bg-white rounded-lg pl-6 pr-6 h-auto w-auto ml-4 mr-4">
@@ -40,18 +51,30 @@ const Cart = ({cart, setCart}) => {
                     <div className="text-left text-black tracking-widest font-bold col-span-2">
                         CART ({itemsInCart})
                 </div>
+                <button 
+                    className="text-right pl-8 text-[#979797] text-xs underline" 
+                    onClick={() => (clearCart())}
+                >
+                    Remove all
+                </button>
                 <Popup 
-                    trigger={
-                        <button 
-                            className="text-right pl-8 text-[#979797] text-xs underline" 
-                            onClick={() => setCart([])}
-                        >
-                            Remove all
-                        </button>
-                    } 
+                    open={openClearCartMsg}
+                    onClose={closeClearCartMsg}
                     modal
+                    closeOnDocumentClick
                 >    
-                    <span className="text-red-950 font-semibold tracking-widest text-sm flex text-left flex-wrap pl-2 pr-2 underline -mt-14">
+                    {/* <div className="bg-red-200 rounded-lg p-10">
+                        <span>Clear all the items from the cart?</span>
+                        <div className="grid grid-cols-2">
+                            <button onClick={() => {this.clearCart()}}>
+                                Yes
+                            </button>
+                            <button onClick={() => closeClearCartMsg()}>
+                                NO
+                            </button>
+                        </div>
+                    </div> */}
+                    <span className="bg-red-200 text-red-900 rounded-lg p-10">
                         All items has been removed
                     </span>
                 </Popup>
