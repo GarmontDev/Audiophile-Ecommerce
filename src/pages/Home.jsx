@@ -17,6 +17,7 @@ import Categories from '../components/Categories'
 import ProductPage from '../components/ProductPage'
 import Cart from '../components/Cart'
 import Popup from 'reactjs-popup'
+import Checkout from '../components/Checkout'
 
 function Home() {
 
@@ -50,7 +51,7 @@ function Home() {
                         position="top center"
                         modal
                     >
-                        <Cart cart={cart} setCart={setCart}/>
+                        <Cart cart={cart} setCart={setCart} setPage={setPage}/>
                     </Popup>
                 </div>
                 <hr className="h-px w-full bg-[#979797] border-0 opacity-40 mt-8"/>
@@ -79,24 +80,9 @@ function Home() {
             {page === "home" && !mobileMenuIsOpen ? 
                     <div id="content" className="ml-6 mr-6 lg:ml-16 lg:mr-16">
                         <CategoriesGrid setPage={setPage}/>
-                        {data.filter(product => product.id === 6).map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <BannerXL1 item={item}/>
-                                </div>
-                        )})}
-                        {data.filter(product => product.id === 5).map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <BannerM1 item={item}/>
-                                </div>
-                        )})}
-                        {data.filter(product => product.id === 1).map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <BannerL1 item={item}/>
-                                </div>
-                        )})}
+                        <BannerXL1 data={data} productToDisplay={6} />
+                        <BannerM1 data={data} productToDisplay={5} />
+                        <BannerL1 data={data} productToDisplay={1} />
                     </div>
                 : 
                     <div>
@@ -126,6 +112,10 @@ function Home() {
                 
             :
                 ""
+            }
+            {page === "checkout" 
+                ? <Checkout/>
+                : ""
             }
             <Footer setPage={setPage}/>
         </>

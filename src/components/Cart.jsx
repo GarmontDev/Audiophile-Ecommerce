@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import Popup from "reactjs-popup"
 
-const Cart = ({cart, setCart}) => { 
+const Cart = ({cart, setCart, setPage}) => { 
+
+    
 
     const [itemsInCart, setItemsInCart] = useState(cart ? cart.length : 0)
 
@@ -113,7 +115,7 @@ const Cart = ({cart, setCart}) => {
                         </div>
                     </div>
                     <div className="flex justify-center pt-4 pb-6">
-                        <button className="see-product-orange-btn w-full">CHECKOUT</button>
+                        <button className="see-product-orange-btn w-full" onClick={() => {setPage("checkout"); closeClearCartMsg()}}>CHECKOUT</button>
                     </div>
                 </div>
             </div>
