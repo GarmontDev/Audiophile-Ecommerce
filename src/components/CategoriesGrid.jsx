@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import IconArrowRight from '../assets/icons/IconArrowRight'
+import { Link } from 'react-router-dom'
 
 const categories = [
     {name: "headphones", thumbnail: "src/assets/shared/desktop/image-category-thumbnail-headphones.png"},
@@ -7,13 +7,10 @@ const categories = [
     {name: "earphones", thumbnail: "src/assets/shared/desktop/image-category-thumbnail-earphones.png"}
 ]
 
-const CategoriesGrid = ({setPage, mobileMenuIsOpen, setMobileMenuIsOpen}) => { 
+const CategoriesGrid = ({data, mobileMenuIsOpen, setMobileMenuIsOpen}) => { 
 
-    function handleShopButton(categoryName){
-        setPage(categoryName)
-        if(mobileMenuIsOpen){
-            setMobileMenuIsOpen(false)
-        }
+    function goToTop(){
+        window.scrollTo({top:0, behavior: 'smooth'})
     }
 
     return(
@@ -27,12 +24,13 @@ const CategoriesGrid = ({setPage, mobileMenuIsOpen, setMobileMenuIsOpen}) => {
                                 {category.name}
                             </div>
                             <div className="shop-btn">
-                                <button onClick={() => {
-                                                    handleShopButton(category.name) 
-                                                }}
+                                <Link 
+                                    to="/category" 
+                                    state={{name: category.name}}
+                                    onClick={() => goToTop()}
                                 >
                                     SHOP
-                                </button>
+                                </Link>
                                 <div className='mt-1 ml-2'>
                                     <IconArrowRight/>
                                 </div>

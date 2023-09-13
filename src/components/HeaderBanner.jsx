@@ -4,7 +4,7 @@ const HeaderBanner = ({item, setPage, setProductSelected}) => {
     return(
         <>
             <div key={item.slug} className={
-                `text-white pt-10 pb-28 pl-6 pr-6
+                `text-white bg-black pt-10 pb-28 pl-6 pr-6
                 grid grid-cols-1
                 lg:grid-cols-2
                 text-center
@@ -23,13 +23,13 @@ const HeaderBanner = ({item, setPage, setProductSelected}) => {
                     <p className="font-thin tracking-wide mt-10">
                         {item.description}
                     </p>
-                    <button className="see-product-orange-btn m-auto mt-10" 
+                    {/* <button className="see-product-orange-btn m-auto mt-10" 
                         onClick={() => {
                             setPage("ProductPage"), 
                             setProductSelected(item.slug)}}
                         >
                         SEE PRODUCT
-                    </button>
+                    </button> */}
             </div>
         </>
     )

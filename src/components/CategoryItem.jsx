@@ -1,4 +1,6 @@
-const CategoryItem = ({item, setPage, setProductSelected}) => { 
+import { Link } from "react-router-dom"
+
+const CategoryItem = ({item}) => { 
     return(
         <>
             <div className="pl-8 pr-8 pt-20 pb-6 grid justify-center">
@@ -16,11 +18,9 @@ const CategoryItem = ({item, setPage, setProductSelected}) => {
                 <div id="category-item-description" className="pt-4 text-center text-[#6e6e6e]">
                     {item.description}
                 </div>
-                <button 
-                    className="see-product-orange-btn m-auto" 
-                    onClick={() => {setPage("ProductPage"), setProductSelected(item.slug)}}>
+                <Link to="/product-page" state={{item: item}} className="see-product-orange-btn m-auto" >
                     SEE PRODUCT
-                </button>
+                </Link>
             </div>
         </>
     )

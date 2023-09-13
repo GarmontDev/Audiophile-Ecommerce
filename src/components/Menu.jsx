@@ -1,24 +1,37 @@
 import { isMobile } from "react-device-detect"
+import { Link, Outlet } from "react-router-dom"
 
-const Menu = ({setPage}) => { 
+const Menu = () => { 
+
+    function goToTop(){
+        window.scrollTo({top:0, behavior: 'smooth'})
+    }
+
     return(
         <>
             <div id='menu' className='text-white uppercase tracking-widest'>
                 <li className={`${isMobile ? "grid grid-cols-1 space-y-4 mt-10" : "flex space-x-6"}`}>
                     <ul>
-                        <button onClick={() => setPage("home")}>Home</button>
+                        <Link to="/" onClick={() => goToTop()}>Home</Link>
                     </ul>
                     <ul>
-                        <button onClick={() => setPage("headphones")}>Headphones</button>
+                        <Link to="/category" state={{name: "headphones"}} onClick={() => goToTop()}>
+                            Headphones
+                        </Link>
                     </ul>
                     <ul>
-                        <button onClick={() => setPage("speakers")}>Speakers</button>
+                        <Link to="/category" state={{name: "speakers"}} onClick={() => goToTop()}>
+                            Speakers
+                        </Link>
                     </ul>
                     <ul>
-                        <button onClick={() => setPage("earphones")}>Earphones</button>
+                        <Link to="/category" state={{name: "earphones"}} onClick={() => goToTop()}>
+                            Earphones
+                        </Link>
                     </ul>
                 </li>
             </div>
+            <Outlet />
         </>
     )
  }

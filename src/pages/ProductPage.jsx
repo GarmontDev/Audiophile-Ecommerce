@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import Popup from "reactjs-popup"
 
-const ProductPage = ({item, setPage, setProductSelected, cart, setCart}) => { 
+const ProductPage = ({cart, setCart}) => { 
 
     const [numberOfItems, setNumberOfItems] = useState(1)
+
+    const location = useLocation()
+    const item = location?.state.item
 
     useEffect(() => {
         if (numberOfItems < 1){

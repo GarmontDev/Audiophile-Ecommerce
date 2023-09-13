@@ -5,7 +5,7 @@ import IconTwitter from '../assets/icons/IconTwitter'
 import IconInstagram from '../assets/icons/IconInstagram'
 import BannerXL2 from "./Banners/BannerXL2"
 
-const Footer = ({setPage}) => { 
+const Footer = () => { 
     return(
         <>
             <BannerXL2/>
@@ -14,7 +14,7 @@ const Footer = ({setPage}) => {
                 <div className="mt-10 flex justify-center">
                     <IconLogo/>
                 </div>  
-                <Menu setPage={setPage}/>
+                <Menu/>
                 <div className="ml-6 mr-6 mt-10 mb-10 text-gray-400 font-medium">
                     Audiophile is an all in one stop to fulfill your audio needs. 
                     We're a small team of music lovers and sound specialists who are devoted to helping 
