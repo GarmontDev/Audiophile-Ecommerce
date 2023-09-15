@@ -1,9 +1,6 @@
-import IconLogo from "../assets/icons/IconLogo"
 import Menu from "./Menu"
-import IconFacebook from '../assets/icons/IconFacebook'
-import IconTwitter from '../assets/icons/IconTwitter'
-import IconInstagram from '../assets/icons/IconInstagram'
 import BannerXL2 from "./Banners/BannerXL2"
+import { LogoIcon, FacebookIcon, TwitterIcon, InstagramIcon } from "../assets/icons/Icons"
 
 const Footer = () => { 
     return(
@@ -12,7 +9,7 @@ const Footer = () => {
             <div className="bg-black text-white grid text-center">
                 <hr className="bg-[#D87D4A] h-1.5 m-auto w-2/6"/>
                 <div className="mt-10 flex justify-center">
-                    <IconLogo/>
+                    <LogoIcon/>
                 </div>  
                 <Menu/>
                 <div className="ml-6 mr-6 mt-10 mb-10 text-gray-400 font-medium">
@@ -25,9 +22,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div id="social-logos" className="space-x-3 mb-10">
-                    <button><IconFacebook/></button>
-                    <button><IconTwitter/></button>
-                    <button><IconInstagram/></button>
+                    <button><FacebookIcon/></button>
+                    <button><TwitterIcon/></button>
+                    <button><InstagramIcon/></button>
                 </div>
             </div>
         </>

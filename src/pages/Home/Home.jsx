@@ -1,8 +1,8 @@
-import '../styles/Home.css'
-import HeaderBanner from '../components/HeaderBanner'
+import '../../assets/styles/styles.css'
+import HeaderBanner from '../../components/HeaderBanner'
 
 
-import data from '../data.json'
+import data from '../../data.json'
 
 function Home() {
     return (

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const BannerL1 = ({data, productToDisplay}) => { 
     return(
         <>
@@ -13,11 +15,9 @@ const BannerL1 = ({data, productToDisplay}) => {
                                 <div id="banner-lg-title" className="uppercase font-semibold tracking-widest text-black text-3xl pt-4 pb-10">
                                     {item.name}
                                 </div>
-                                <button>
-                                    <span id="banner-lg-button" className="see-product-transparent-btn mb-10">
-                                        SEE PRODUCT
-                                    </span>
-                                </button>
+                                <Link to="/product-page" state={{item: item}} className="see-product-transparent-btn mb-10" >
+                                    SEE PRODUCT
+                                </Link>
                             </div>
                         </div>
                     </div>

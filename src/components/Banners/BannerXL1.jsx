@@ -1,4 +1,5 @@
 import { isMobile } from "react-device-detect"
+import { Link } from "react-router-dom"
 
 const BannerXL1 = ({ data, productToDisplay }) => { 
     return(
@@ -21,11 +22,9 @@ const BannerXL1 = ({ data, productToDisplay }) => {
                                 <div id="banner-xl-description" className="text-white mt-8 mb-8 ">
                                     {item.description}
                                 </div>
-                                <button>
-                                    <span id="banner-xl-button" className="see-product-black-btn mb-10">
-                                        SEE PRODUCT
-                                    </span>
-                                </button>
+                                <Link to="/product-page" state={{item: item}} className="see-product-black-btn mb-10" >
+                                    SEE PRODUCT
+                                </Link>
                             </div>
                         </div>
                     </div>

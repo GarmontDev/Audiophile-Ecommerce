@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
-import Popup from "reactjs-popup"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
-const ProductPage = ({cart, setCart}) => { 
+const ProductPage = () => { 
+    const localCart = JSON.parse(localStorage.getItem("cart")) || []
+    const [cart, setCart] = useState(localCart)
 
     const [numberOfItems, setNumberOfItems] = useState(1)
 
+    const navigate = useNavigate();
     const location = useLocation()
     const item = location?.state.item
 
@@ -40,12 +42,14 @@ const ProductPage = ({cart, setCart}) => {
             setCart(cart2 => [...cart, newItem])
         }
 
+        localStorage.setItem("cart", JSON.stringify(cart))
+
         alert(numberOfItems + "  " +newItem.name +" added to the cart!")
     }
 
     return(
         <>
-            <button id="go-back-button" className="pl-6 pt-4 text-[#6e6e6e]" onClick={() => {setPage(item.category)}}>
+            <button id="go-back-button" className="pl-6 pt-4 text-[#6e6e6e]" onClick={() => navigate(-1)}>
                 Go Back
             </button>
             <div id="product-image" className="pl-6 pr-6 pt-6">
@@ -80,9 +84,7 @@ const ProductPage = ({cart, setCart}) => {
                                 onClick={() => setNumberOfItems(numberOfItems+1)}>+
                         </button>
                     </div>
-                    <button className="see-product-orange-btn" onClick={() => {
-                        handleAddToCart()
-                    }}>
+                    <button className="see-product-orange-btn" onClick={() => {handleAddToCart()}}>
                         ADD TO CART
                     </button>
                 </div>
@@ -108,9 +110,9 @@ const ProductPage = ({cart, setCart}) => {
                     ))}
                 </div>
                 <div id="product-images" >
-                        <img alt={item.title} src={"src/"+item.gallery.first.mobile} className="rounded-lg mb-4"/>
-                        <img alt={item.title} src={"src/"+item.gallery.second.mobile} className="rounded-lg mb-4"/>
-                        <img alt={item.title} src={"src/"+item.gallery.third.mobile} className="rounded-lg mb-4"/>
+                    <img alt={item.title} src={"src/"+item.gallery.first.mobile} className="rounded-lg mb-4"/>
+                    <img alt={item.title} src={"src/"+item.gallery.second.mobile} className="rounded-lg mb-4"/>
+                    <img alt={item.title} src={"src/"+item.gallery.third.mobile} className="rounded-lg mb-4"/>
                 </div>
                 <div id="product-you-may-also-like">
                     <div className="text-black uppercase tracking-wider font-bold text-xl pt-10 mb-4">
@@ -120,12 +122,9 @@ const ProductPage = ({cart, setCart}) => {
                         <div key={index} className="pt-10 pb-10 grid grid-cols-1">
                             <img alt={element.name} src={"src/"+element.image.mobile} className=" rounded-lg"/>
                             <div className="text-center font-bold tracking-widest text-xl pt-4">{element.name}</div>
-                            <button 
-                                className="see-product-orange-btn m-auto mt-6" 
-                                onClick={() => {setProductSelected(element.slug), window.scrollTo({top:0, behavior: 'smooth'})}}
-                            >
+                            <Link to="/product-page" state={{item: element}} className="see-product-orange-btn m-auto mt-6" >
                                 SEE PRODUCT
-                            </button>
+                            </Link>
                         </div>
                     ))}
                 </div>

@@ -11,6 +11,12 @@ const Layout = () => {
           <li>
             <Link to="/headphones">Headphones</Link>
           </li>
+          <li>
+            <Link to="/earphones">Earphones</Link>
+          </li>
+          <li>
+            <Link to="/speakers">Speakers</Link>
+          </li>
         </ul>
       </nav>
 

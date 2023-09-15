@@ -1,13 +1,4 @@
-import { isMobile } from "react-device-detect"
-
-
-// bg-[url("./assets/product-zx7-speaker/mobile/image-product.jpg")]
-// bg-[url(
-//     ${isMobile 
-//         ? item.image.mobile
-//         : item.image.desktop
-//     }
-// )
+import { Link } from "react-router-dom"
 
 const BannerM1 = ({data, productToDisplay}) => {
     return(
@@ -23,12 +14,9 @@ const BannerM1 = ({data, productToDisplay}) => {
                                 className="uppercase font-semibold tracking-widest text-black text-3xl mb-10">
                                 {item.name}
                             </h1>
-                            <button>
-                                <span id="banner-lg-button" className="see-product-transparent-btn">
+                            <Link to="/product-page" state={{item: item}} className="see-product-transparent-btn" >
                                     SEE PRODUCT
-                                </span>
-                            </button>
-
+                            </Link>
                         </div>
                     </div>
             )})}

@@ -9,7 +9,7 @@ const Menu = () => {
 
     return(
         <>
-            <div id='menu' className='text-white uppercase tracking-widest'>
+            <nav id='menu' className='text-white uppercase tracking-widest'>
                 <li className={`${isMobile ? "grid grid-cols-1 space-y-4 mt-10" : "flex space-x-6"}`}>
                     <ul>
                         <Link to="/" onClick={() => goToTop()}>Home</Link>
@@ -30,7 +30,7 @@ const Menu = () => {
                         </Link>
                     </ul>
                 </li>
-            </div>
+            </nav>
             <Outlet />
         </>
     )

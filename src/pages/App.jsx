@@ -1,31 +1,30 @@
-import '../styles/Home.css'
-import IconLogo from '../assets/icons/IconLogo'
-import IconCart from '../assets/icons/IconCart'
-import IconHamburguer from '../assets/icons/IconHamburguer'
-import CategoriesGrid from '../components/CategoriesGrid'
+import { useState } from 'react'
+import Popup from 'reactjs-popup'
 import { BrowserView, MobileView, isMobile } from 'react-device-detect'
+import { Link, Route, Routes } from 'react-router-dom'
 
 import data from '../data.json'
+
+import '../assets/styles/styles.css'
+import Layout from '../assets/layout/layout'
+
 import Menu from '../components/Menu'
+import CategoriesGrid from '../components/Categories/CategoriesGrid'
 import BannerM1 from '../components/Banners/BannerM1'
 import BannerL1 from '../components/Banners/BannerL1'
 import BannerXL1 from '../components/Banners/BannerXL1'
 import Footer from '../components/Footer'
-import { useState } from 'react'
-import Cart from '../components/Cart'
-import Popup from 'reactjs-popup'
-import { Link, Route, Routes } from 'react-router-dom'
-import Layout from '../assets/layout/layout'
-import Home from './Home'
-import Category from './Category'
-import ProductPage from './ProductPage'
+import Cart from '../components/Cart/Cart'
+
+import Home from './Home/Home'
+import Category from './Category/Category'
+import ProductPage from './ProductPage/ProductPage'
+import { CartIcon, HamburguerIcon, LogoIcon } from '../assets/icons/Icons'
 
 const App = () => { 
-
-    const [page, setPage] = useState("home")
-    const [productSelected, setProductSelected] = useState(0);
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
-    const [cart, setCart] = useState([])
+
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [])
 
     return(
         <>
@@ -33,33 +32,33 @@ const App = () => {
                 <div id='header' className="pt-10 grid grid-cols-3 pl-6 pr-6 pb-6 bg-black">
                     <MobileView>
                         <button className='flex justify-start' onClick={() => {setMobileMenuIsOpen(!mobileMenuIsOpen)}}>
-                                <IconHamburguer/>
+                            <HamburguerIcon/>
                         </button> 
                     </MobileView>
-                     <div id='logo' className='flex justify-center'>
-                        <Link to="/">
-                            <IconLogo/>
+                    <div className='flex justify-center'>
+                        <Link to="/" >
+                            <LogoIcon/>
                         </Link>
                     </div>
                     <BrowserView>
-                        <Menu setPage={setPage}/>
+                        <Menu/>
                     </BrowserView>
                     <Popup trigger={
                         <button className='flex justify-end'>
-                            <IconCart/>
+                            <CartIcon/>
                         </button>
                         } 
                         position="top center"
                         modal
                     >
-                        <Cart cart={cart} setCart={setCart} setPage={setPage}/>
+                        <Cart cart={cart} setCart={setCart}/>
                     </Popup>
                 </div>
                 <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>
                 {mobileMenuIsOpen ? 
                     <div className='absolute top-24 left-0 bg-black bg-opacity-60 w-screen h-[125rem]'>
                         <div className='bg-white w-screen pb-10 pl-6 pr-6 pt-2 rounded-b-lg'>
-                            <CategoriesGrid setPage={setPage} mobileMenuIsOpen={mobileMenuIsOpen} setMobileMenuIsOpen={setMobileMenuIsOpen}/>
+                            <CategoriesGrid mobileMenuIsOpen={mobileMenuIsOpen} setMobileMenuIsOpen={setMobileMenuIsOpen}/>
                         </div>
                     </div>
                 :   
@@ -75,18 +74,14 @@ const App = () => {
 
             {!mobileMenuIsOpen ? 
                 <div id="content" className="ml-6 mr-6 lg:ml-16 lg:mr-16">
-                    <CategoriesGrid data={data}/>
+                    <CategoriesGrid data={data} setMobileMenuIsOpen={setMobileMenuIsOpen}/>
                     <BannerXL1 data={data} productToDisplay={6} />
                     <BannerM1 data={data} productToDisplay={5} />
                     <BannerL1 data={data} productToDisplay={1} />
                 </div>
             : 
                 <div>
-                    <Category 
-                        data={data}
-                        productSelected={productSelected} 
-                        setProductSelected={setProductSelected}
-                    />
+                    <Category data={data}/>
                 </div>
             }
             <Footer/>

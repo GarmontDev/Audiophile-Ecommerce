@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"
 import Popup from "reactjs-popup"
 
-const Cart = ({cart, setCart, setPage}) => { 
-
-    
+const Cart = ({cart, setCart, setPage}) => {
 
     const [itemsInCart, setItemsInCart] = useState(cart ? cart.length : 0)
 
@@ -42,6 +40,7 @@ const Cart = ({cart, setCart, setPage}) => {
         let clearItemsConfirmation = confirm("Clear all the items from the cart?")
         if (clearItemsConfirmation){
             setCart(emptyCart => [])
+            localStorage.removeItem("cart")
             setOpenClearCartMsg(true)
         }
     }
