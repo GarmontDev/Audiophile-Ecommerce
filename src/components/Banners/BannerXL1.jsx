@@ -22,7 +22,7 @@ const BannerXL1 = ({ data, productToDisplay }) => {
                                 <div id="banner-xl-description" className="text-white mt-8 mb-8 ">
                                     {item.description}
                                 </div>
-                                <Link to="/product-page" state={{item: item}} className="see-product-black-btn mb-10" >
+                                <Link to="/product-page" state={{item: item}} className="see-product-black-btn mb-10" onClick={() => window.scrollTo({top:0, behavior: 'smooth'})}>
                                     SEE PRODUCT
                                 </Link>
                             </div>

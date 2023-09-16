@@ -14,7 +14,7 @@ const BannerM1 = ({data, productToDisplay}) => {
                                 className="uppercase font-semibold tracking-widest text-black text-3xl mb-10">
                                 {item.name}
                             </h1>
-                            <Link to="/product-page" state={{item: item}} className="see-product-transparent-btn" >
+                            <Link to="/product-page" state={{item: item}} className="see-product-transparent-btn" onClick={() => window.scrollTo({top:0, behavior: 'smooth'})}>
                                     SEE PRODUCT
                             </Link>
                         </div>

@@ -9,23 +9,21 @@ import '../assets/styles/styles.css'
 import Layout from '../assets/layout/layout'
 
 import Menu from '../components/Menu'
+import Cart from '../components/Cart/Cart'
 import CategoriesGrid from '../components/Categories/CategoriesGrid'
 import BannerM1 from '../components/Banners/BannerM1'
 import BannerL1 from '../components/Banners/BannerL1'
 import BannerXL1 from '../components/Banners/BannerXL1'
 import Footer from '../components/Footer'
-import Cart from '../components/Cart/Cart'
 
 import Home from './Home/Home'
 import Category from './Category/Category'
 import ProductPage from './ProductPage/ProductPage'
 import { CartIcon, HamburguerIcon, LogoIcon } from '../assets/icons/Icons'
 
-const App = () => { 
+export const App = () => { 
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
-
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [])
-
+    
     return(
         <>
             <div id='wrapper' className='font-manrope h-auto w-full'>
@@ -51,7 +49,7 @@ const App = () => {
                         position="top center"
                         modal
                     >
-                        <Cart cart={cart} setCart={setCart}/>
+                        <Cart/>
                     </Popup>
                 </div>
                 <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>

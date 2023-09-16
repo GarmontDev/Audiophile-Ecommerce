@@ -1,51 +1,29 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { CartContext } from "../../components/Cart/Context/CartContext";
+import data from '../../data.json'
+import Popup from "reactjs-popup";
 
 const ProductPage = () => { 
-    const localCart = JSON.parse(localStorage.getItem("cart")) || []
-    const [cart, setCart] = useState(localCart)
-
-    const [numberOfItems, setNumberOfItems] = useState(1)
 
     const navigate = useNavigate();
     const location = useLocation()
     const item = location?.state.item
 
-    useEffect(() => {
-        if (numberOfItems < 1){
-            setNumberOfItems(1)
-        }
-    }, [numberOfItems])
+    const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
 
-    useEffect(() => {
+    const [numberOfItems, setNumberOfItems] = useState(1)
+
+    const [open, setOpen] = useState(false) 
+    const closeModal = () => setOpen(false)
+
+    function goToTop(){
         window.scrollTo({top:0, behavior: 'smooth'})
-    }, [])
-
-    function handleAddToCart(){   
-        var newItem = {
-            slug: item.slug,
-            name: item.name,
-            image: {
-                mobile: item.image.mobile,
-                desktop: item.image.desktop
-            }, 
-            price: item.price,
-            numberOfItems: numberOfItems
-        }
-  
-        if (cart.length > 0){
-            setCart(cart.map((product, index) => (product.slug === item.slug)
-                ? {...product, numberOfItems: product.numberOfItems + numberOfItems}
-                : product
-            ))
-        }else{
-            setCart(cart2 => [...cart, newItem])
-        }
-
-        localStorage.setItem("cart", JSON.stringify(cart))
-
-        alert(numberOfItems + "  " +newItem.name +" added to the cart!")
     }
+
+    useEffect(() => {
+        goToTop()
+    }, [])
 
     return(
         <>
@@ -84,10 +62,29 @@ const ProductPage = () => {
                                 onClick={() => setNumberOfItems(numberOfItems+1)}>+
                         </button>
                     </div>
-                    <button className="see-product-orange-btn" onClick={() => {handleAddToCart()}}>
+                    <button className="see-product-orange-btn" onClick={() => {addToCart(item, numberOfItems), setOpen(true)}}>
                         ADD TO CART
                     </button>
                 </div>
+                <Popup 
+                    open={open} 
+                    onClose={closeModal}
+                    closeOnDocumentClick 
+                    position="top center"
+                    modal
+                >        
+                    <div className="p-8 text-center bg-black text-white relative rounded-lg">          
+                        <button className="absolute top-0 right-2 text-2xl" onClick={closeModal}> 
+                            &times;
+                        </button>
+                        <div className="text-orange-300">
+                            {numberOfItems + " x " + item.name}
+                        </div>
+                        <span>
+                            added to the cart
+                        </span>
+                    </div>      
+                </Popup>
                 <div id="product-features" className="text-left text-[#6e6e6e] text-sm whitespace-break-spaces">
                     <div className="text-black uppercase tracking-wider font-bold text-xl pt-10 mb-4">
                         FEATURES
@@ -118,15 +115,19 @@ const ProductPage = () => {
                     <div className="text-black uppercase tracking-wider font-bold text-xl pt-10 mb-4">
                         YOU MAY ALSO LIKE
                     </div>
-                    {item.others.map((element,index) => (
-                        <div key={index} className="pt-10 pb-10 grid grid-cols-1">
-                            <img alt={element.name} src={"src/"+element.image.mobile} className=" rounded-lg"/>
-                            <div className="text-center font-bold tracking-widest text-xl pt-4">{element.name}</div>
-                            <Link to="/product-page" state={{item: element}} className="see-product-orange-btn m-auto mt-6" >
-                                SEE PRODUCT
-                            </Link>
-                        </div>
-                    ))}
+                    {item.others.map((element,index) => {
+                        data.map((item) =>
+                            element.id === item.id
+                                ?   <div key={index} className="pt-10 pb-10 grid grid-cols-1">
+                                        <img alt={element.name} src={"src/"+element.image.mobile} className=" rounded-lg"/>
+                                        <div className="text-center font-bold tracking-widest text-xl pt-4">{element.name}</div>
+                                        <Link to="/product-page" state={{product: element}} className="see-product-orange-btn m-auto mt-6" >
+                                            SEE PRODUCT
+                                        </Link>
+                                    </div>
+                                : ""
+                            )
+                    })}
                 </div>
             </div>
         </>
