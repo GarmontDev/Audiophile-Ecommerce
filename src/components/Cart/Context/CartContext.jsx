@@ -7,8 +7,6 @@ export const CartProvider = ({ children }) => {
   const addToCart = (item, newQuantity) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
 
-    console.log(newQuantity)
-
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>

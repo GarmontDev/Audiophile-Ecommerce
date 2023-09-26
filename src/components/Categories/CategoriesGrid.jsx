@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRightIcon } from '../../assets/icons/Icons'
 import { Categories } from '../../consts/Categories'
 
-const CategoriesGrid = ({ setMobileMenuIsOpen }) => { 
+const CategoriesGrid = ({closeMobileMenu}) => { 
 
     function goToTop(){
         window.scrollTo({top:0, behavior: 'smooth'})
@@ -21,7 +21,7 @@ const CategoriesGrid = ({ setMobileMenuIsOpen }) => {
                             <Link 
                                 to="/category" 
                                 state={{name: category.name}}
-                                onClick={() => (goToTop(), setMobileMenuIsOpen(false))}
+                                onClick={() => (goToTop(), closeMobileMenu())}
                                 className="shop-btn"
                             >
                                 SHOP

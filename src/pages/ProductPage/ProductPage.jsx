@@ -4,7 +4,7 @@ import { CartContext } from "../../components/Cart/Context/CartContext";
 import data from '../../data.json'
 import Popup from "reactjs-popup";
 
-const ProductPage = () => { 
+const ProductPage = ({setCartOpen}) => { 
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -83,6 +83,9 @@ const ProductPage = () => {
                         <span>
                             added to the cart
                         </span>
+                        <button onClick={() => setCartOpen(true)} className="mt-6 w-10/12 m-auto bg-white hover:bg-[#D87D4A] text-[#D87D4A] hover:text-white rounded-lg">
+                                Open Cart
+                        </button>
                     </div>      
                 </Popup>
                 <div id="product-features" className="text-left text-[#6e6e6e] text-sm whitespace-break-spaces">

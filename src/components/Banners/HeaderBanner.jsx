@@ -1,6 +1,7 @@
 import { isMobile } from "react-device-detect"
+import { Link } from "react-router-dom"
 
-const HeaderBanner = ({item, setPage, setProductSelected}) => { 
+const HeaderBanner = ({item}) => { 
     return(
         <>
             <div key={item.slug} className={
@@ -23,13 +24,9 @@ const HeaderBanner = ({item, setPage, setProductSelected}) => {
                     <p className="font-thin tracking-wide mt-10">
                         {item.description}
                     </p>
-                    {/* <button className="see-product-orange-btn m-auto mt-10" 
-                        onClick={() => {
-                            setPage("ProductPage"), 
-                            setProductSelected(item.slug)}}
-                        >
+                    <Link to="/product-page" state={{item: item}} className="see-product-orange-btn m-auto mt-10">
                         SEE PRODUCT
-                    </button> */}
+                    </Link>
             </div>
         </>
     )

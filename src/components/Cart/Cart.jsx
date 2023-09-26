@@ -1,5 +1,4 @@
 import { useContext, useState } from "react"
-import Popup from "reactjs-popup"
 import { CartContext } from "./Context/CartContext";
 import { Link } from "react-router-dom";
 
@@ -9,7 +8,7 @@ const Cart = () => {
     const closeClearCartMsg = () => setOpenClearCartMsg(false);
 
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext)
-
+    
     return(
         <>
             <div className="bg-white rounded-lg pl-6 pr-6 h-auto w-auto ml-4 mr-4">
@@ -63,13 +62,12 @@ const Cart = () => {
                                         {item.quantity}
                                     </button>
                                     <button className="pl-2 pr-2"
-                                            onClick={() => addToCart(item)}>+
+                                            onClick={() => addToCart(item, 1)}>+
                                     </button>
                                 </div>
                             </div>
                         )
                     })}
-                        {/* let filteredItem = data.filter(product => product.id === item.id) */}
                     <div id="cart-total" className="grid grid-cols-3 relative">
                         <div className="text-left col-span-2">
                             TOTAL
@@ -78,8 +76,8 @@ const Cart = () => {
                             {getCartTotal()} €
                         </div>
                     </div>
-                    <div className="flex justify-center pt-4 pb-6">
-                        <button className="see-product-orange-btn w-full" onClick={() => {closeClearCartMsg()}}>CHECKOUT</button>
+                    <div className="flex justify-center text-center pt-4 pb-6">
+                        <Link className="see-product-orange-btn w-full" to={"/checkout"} onClick={() => {closeClearCartMsg()}}>CHECKOUT</Link>
                     </div>
                 </div>
             </div>
