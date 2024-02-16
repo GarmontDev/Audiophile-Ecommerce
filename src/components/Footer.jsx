@@ -1,6 +1,6 @@
 import Menu from "./Menu"
 import BannerXL2 from "./Banners/BannerXL2"
-import { LogoIcon, FacebookIcon, TwitterIcon, InstagramIcon } from "../assets/icons/Icons"
+import { LogoIcon, FacebookIcon, InstagramIcon, XIcon } from "../assets/icons/Icons"
 
 const Footer = () => { 
     return(
@@ -23,7 +23,7 @@ const Footer = () => {
                 </div>
                 <div id="social-logos" className="space-x-3 mb-10">
                     <button><FacebookIcon/></button>
-                    <button><TwitterIcon/></button>
+                    <button><XIcon/></button>
                     <button><InstagramIcon/></button>
                 </div>
             </div>

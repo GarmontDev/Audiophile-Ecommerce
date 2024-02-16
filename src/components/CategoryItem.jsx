@@ -1,4 +1,4 @@
-const CategoryItem = ({item, setPage, setProductSelected}) => { 
+const CategoryItem = ({ item }) => { 
     return(
         <>
             <div className="pl-8 pr-8 pt-20 pb-6 grid justify-center">

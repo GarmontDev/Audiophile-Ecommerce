@@ -16,13 +16,19 @@ import ProductPage from '../ProductPage/ProductPage'
 import { CartIcon, HamburguerIcon, LogoIcon } from '../../assets/icons/Icons'
 import Checkout from '../Checkout/Checkout'
 import CategoriesGrid from '../../components/Categories/CategoriesGrid'
+import CheckoutModal from '../Checkout/CheckoutModal'
 
 export const App = () => { 
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
     const closeMobileMenu = () => setMobileMenuIsOpen(false)
 
     const [cartOpen, setCartOpen] = useState(false);
-    
+    const [checkoutModal, setCheckoutModal] = useState(false)
+
+    function goToTop(){
+        window.scrollTo({top:0, behavior: 'smooth'})
+    }
+
     return(
         <>
             <div id='wrapper' className='font-manrope h-auto w-full'>
@@ -49,7 +55,15 @@ export const App = () => {
                         position="top center"
                         modal
                     >
-                        <Cart/>
+                        <Cart setCartOpen={setCartOpen}/>
+                    </Popup>
+                    <Popup 
+                        open={checkoutModal}
+                        onClose={() => (setCheckoutModal(false), goToTop())}
+                        position="top center"
+                        modal
+                    >
+                        <CheckoutModal setCheckoutModal={setCheckoutModal}/>
                     </Popup>
                 </div>
                 <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>
@@ -63,13 +77,13 @@ export const App = () => {
                     ""
                 }
             </div>
-            <div id="cart-blur" className={cartOpen ? 'bg-black opacity-40' : ""}>
+            <div id="cart-blur" className={cartOpen || checkoutModal ? 'bg-black opacity-40' : "bg-[#f9f9f9]"}>
                 <Routes>
                     <Route path='/' element={ <Layout/>} />
                     <Route index element={<Home mobileMenuIsOpen={mobileMenuIsOpen} closeMobileMenu={closeMobileMenu}/>} />
                     <Route path="category" element={<Category />}/>
                     <Route path="product-page" element={<ProductPage setCartOpen={setCartOpen}/>} />
-                    <Route path="checkout" element={<Checkout/>} />
+                    <Route path="checkout" element={<Checkout setCheckoutModal={setCheckoutModal}/>} />
                 </Routes>
                 <Footer/>
             </div>

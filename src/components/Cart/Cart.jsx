@@ -2,36 +2,45 @@ import { useContext, useState } from "react"
 import { CartContext } from "./Context/CartContext";
 import { Link } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({ setCartOpen }) => {
 
     const [openClearCartMsg, setOpenClearCartMsg] = useState(false); 
-    const closeClearCartMsg = () => setOpenClearCartMsg(false);
+    const closeClearCartMsg = () => (setOpenClearCartMsg(false));
 
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext)
+
+    function removeAllItemsBtn(){
+        if(cartItems?.length > 0){
+            setOpenClearCartMsg(true)
+        }
+    }
     
     return(
         <>
-            <div className="bg-white rounded-lg pl-6 pr-6 h-auto w-auto ml-4 mr-4">
+            <div className="grid bg-white rounded-lg pl-6 pr-6 h-auto w-auto ml-4 mr-4">
                 <div id="cart-header" className="grid grid-cols-3 pt-6">
                     <div className="text-left text-black tracking-widest font-bold col-span-2">
                         CART ({cartItems.length})
                     </div>
-                    <button 
+                    {cartItems.length > 0 ? 
+                        <button 
                         className="text-right pl-8 text-[#979797] text-xs underline" 
-                        onClick={() => (setOpenClearCartMsg(true))}
-                    >
-                        Remove all
-                    </button>
+                        onClick={() => (removeAllItemsBtn())}
+                        >
+                            Remove all
+                        </button>
+                        : ""
+                    }
                 </div>
                 {openClearCartMsg 
-                    ?   <div className="bg-red-200 rounded-lg p-10">
+                    ?   <div className="bg-gray-200 grid grid-rows-2 rounded-sm p-6 text-center font-medium mt-6">
                             <span>Clear all the items from the cart?</span>
-                            <div className="grid grid-cols-2">
-                                <button onClick={() => {clearCart(), closeClearCartMsg()}}>
+                            <div className="grid grid-cols-2 w-auto pt-2 m-auto">
+                                <button onClick={() => {clearCart(), closeClearCartMsg()}} className="bg-red-500 rounded-sm w-14 mr-2">
                                     Yes
                                 </button>
-                                <button onClick={() => closeClearCartMsg()}>
-                                    NO
+                                <button onClick={() => closeClearCartMsg()} className="bg-green-500 rounded-sm w-14">
+                                    No
                                 </button>
                             </div>
                         </div>
@@ -44,9 +53,9 @@ const Cart = () => {
                     }
                     {cartItems?.map((item, index) => {
                         return(
-                            <div key={index} className="flex pb-4">
+                            <div key={index} className="pb-4 grid grid-cols-5">
                                 <img alt={item.name} src={"src/"+item.image?.mobile} className="rounded-lg h-16 w-16"/>
-                                <div className="pl-4 pr-4 text-sm">
+                                <div className="pl-4 pr-4 text-sm col-span-3">
                                     <div className="font-bold text-black">
                                         {item.name}
                                     </div>
@@ -68,7 +77,7 @@ const Cart = () => {
                             </div>
                         )
                     })}
-                    <div id="cart-total" className="grid grid-cols-3 relative">
+                    <div id="cart-total" className="grid grid-cols-3 relative mt-4 mb-4">
                         <div className="text-left col-span-2">
                             TOTAL
                         </div>
@@ -77,7 +86,9 @@ const Cart = () => {
                         </div>
                     </div>
                     <div className="flex justify-center text-center pt-4 pb-6">
-                        <Link className="see-product-orange-btn w-full" to={"/checkout"} onClick={() => {closeClearCartMsg()}}>CHECKOUT</Link>
+                        <Link className="see-product-orange-btn w-full" onClick={() => {setCartOpen(false)}} to={"/checkout"} >
+                            CHECKOUT
+                        </Link>
                     </div>
                 </div>
             </div>

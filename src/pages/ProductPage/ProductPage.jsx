@@ -41,7 +41,7 @@ const ProductPage = ({setCartOpen}) => {
                 :
                     ""
                 }
-                <div id="product-name" className=" text-black text-2xl font-bold tracking-widest">
+                <div id="product-name" className="text-black text-2xl font-bold tracking-widest">
                     {item.name}
                 </div>
                 <div id="product-description" className=" text-[#6e6e6e]">
@@ -73,17 +73,17 @@ const ProductPage = ({setCartOpen}) => {
                     position="top center"
                     modal
                 >        
-                    <div className="p-8 text-center bg-black text-white relative rounded-lg">          
-                        <button className="absolute top-0 right-2 text-2xl" onClick={closeModal}> 
+                    <div className="p-8 text-center bg-black text-white relative rounded-md">          
+                        <button className="absolute top-0 right-3 text-2xl" onClick={closeModal}> 
                             &times;
                         </button>
-                        <div className="text-orange-300">
+                        <div className="text-orange-300 mt-2">
                             {numberOfItems + " x " + item.name}
                         </div>
                         <span>
                             added to the cart
                         </span>
-                        <button onClick={() => setCartOpen(true)} className="mt-6 w-10/12 m-auto bg-white hover:bg-[#D87D4A] text-[#D87D4A] hover:text-white rounded-lg">
+                        <button onClick={() => setCartOpen(true)} className="mt-6 w-10/12 m-auto pt-2 pb-2 bg-white hover:bg-[#D87D4A] text-[#D87D4A] hover:text-white rounded-sm">
                                 Open Cart
                         </button>
                     </div>      

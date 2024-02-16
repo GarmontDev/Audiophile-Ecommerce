@@ -44,6 +44,19 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const getShippingCost = () => {
+    if (getCartTotal() > 1000) {
+      return 0
+    }else{
+      return 50
+    }
+  }
+
+  const getTotalVAT = () => {
+    let totalCart = getCartTotal()
+    return (totalCart - totalCart/1.21)
+  }
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -63,6 +76,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         getCartTotal,
+        getShippingCost,
+        getTotalVAT,
       }}
     >
       {children}

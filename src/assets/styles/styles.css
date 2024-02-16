@@ -2,43 +2,100 @@
 @tailwind components;
 
 body{
-    @apply
-    font-manrope
+  @apply
+  font-manrope
+}
+
+label{
+  @apply
+  font-semibold text-sm 
+  tracking-tight
+  pt-4 pb-2
+}
+
+input{
+  @apply
+  w-full mt-2 p-2
+  rounded-sm border-2
+  block
+}
+
+h2{
+  @apply
+  font-bold text-lg pt-4 pb-8
+}
+
+h3{
+  @apply
+  pt-10 text-[#D87D4A] font-bold text-sm tracking-widest
+}
+
+h4{
+  @apply
+  text-gray-500 font-bold
 }
 
 .shop-btn{
-    @apply
-    flex justify-center 
-    font-semibold text-sm text-gray-400
-    uppercase
-    pb-4 hover:text-orange-500
+  @apply
+  flex justify-center 
+  font-semibold text-sm text-gray-400
+  uppercase
+  pb-4 hover:text-orange-500
 }
 
 .see-product-orange-btn{
-    @apply
-    text-white
-    text-base font-semibold tracking-wider 
-    pl-6 pr-6 pt-3 pb-3
-    bg-[#D87D4A] 
-    hover:bg-[#FBAF85]
+  @apply
+  text-white
+  text-base font-semibold tracking-wider 
+  pl-6 pr-6 pt-3 pb-3
+  bg-[#D87D4A] 
+  hover:bg-[#FBAF85]
+}
+
+.see-product-disabled-btn{
+  @apply
+  text-white
+  text-base font-semibold tracking-wider 
+  m-auto w-full mt-8
+  pl-6 pr-6 pt-3 pb-3
+  bg-gray-400 cursor-not-allowed
 }
 
 .see-product-black-btn{
-    @apply
-    rounded-sm font-semibold text-sm tracking-widest
-    hover:text-black hover:bg-white border-[0.1rem] border-black
-    text-white bg-black 
-    p-3 w-[10rem] h-12 
-    flex justify-center
+  @apply
+  rounded-sm font-semibold text-sm tracking-widest
+  hover:text-black hover:bg-white border-[0.1rem] border-black
+  text-white bg-black 
+  p-3 w-[10rem] h-12 
+  flex justify-center
 }
 
 .see-product-transparent-btn{
-    @apply
-    rounded-sm font-semibold text-sm tracking-widest
-    hover:text-white hover:bg-black border-[0.12rem] border-black
-    text-black bg-transparent 
-    p-3 w-[10rem] h-12 
-    flex justify-center
+  @apply
+  rounded-sm font-semibold text-sm tracking-widest
+  hover:text-white hover:bg-black border-[0.12rem] border-black
+  text-black bg-transparent 
+  p-3 w-[10rem] h-12 
+  flex justify-center
+}
+
+.radio-btn{
+  @apply
+  flex justify-start 
+  rounded-sm border-[0.05rem] border-gray-300 
+  font-semibold 
+  mb-2 p-2
+}
+
+.radio-btn-text{
+  @apply
+  font-bold
+  pl-4 pt-[0.2rem]
+}
+
+.checkout-money-text{
+  @apply
+  font-semibold
 }
 
 
