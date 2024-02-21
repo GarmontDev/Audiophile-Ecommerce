@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Popup from 'reactjs-popup'
 import { BrowserView, MobileView, isMobile } from 'react-device-detect'
 import { Link, Route, Routes } from 'react-router-dom'

@@ -8,7 +8,7 @@ const BannerM1 = ({data, productToDisplay}) => {
                     <div key={index}>
                         <div className={`rounded-lg w-full h-80 mt-10 pl-6 pt-24
                             bg-cover bg-no-repeat bg-center
-                            bg-[url('src/assets/product-zx7-speaker/mobile/image-speaker-zx7.jpg')]
+                            bg-[url('src/assets/images/product-zx7-speaker/mobile/image-speaker-zx7.jpg')]
                         `}>      
                             <h1 id="banner-lg-title" 
                                 className="uppercase font-semibold tracking-widest text-black text-3xl mb-10">
