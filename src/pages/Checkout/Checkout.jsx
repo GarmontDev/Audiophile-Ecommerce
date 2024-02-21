@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../assets/styles/styles.css"
 import { CartContext } from "../../components/Cart/Context/CartContext";
 import { useContext, useState } from "react";
@@ -77,6 +77,9 @@ const Checkout = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const handleCloseConfirmation = () => navigate("/");
+
   //Popup style
   const contentStyle = { background: 'transparent' };
   const overlayStyle = { background: 'rgba(0,0,0,0.6)' };
@@ -91,7 +94,7 @@ const Checkout = () => {
       <section className="ml-6 mr-6 pl-6 pr-6 mt-4 pt-4 rounded-md bg-white">
         <Popup 
           open={checkoutModal}
-          onClose={() => setCheckoutModal(false)}
+          onClose={() => (setCheckoutModal(false), clearCart(), handleCloseConfirmation())}
           position="top center"
           modal
           {...{contentStyle, overlayStyle}}

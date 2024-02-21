@@ -4,7 +4,7 @@ import { BrowserView, MobileView, isMobile } from 'react-device-detect'
 import { Link, Route, Routes } from 'react-router-dom'
 
 import '../../assets/styles/styles.css'
-import Layout from '../../assets/layout/layout'
+import Layout from '../../layout/layout'
 
 import Menu from '../../components/Menu'
 import Cart from '../../components/Cart/Cart'
