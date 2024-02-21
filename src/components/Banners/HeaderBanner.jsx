@@ -15,7 +15,7 @@ const HeaderBanner = ({item}) => {
                         : 'src/assets/home/desktop/image-header.jpg'})]
                 `
                 }>
-                    <span className="font-thin text-base tracking-[0.75rem] mt-10">
+                    <span className="font-medium text-base tracking-[0.75rem] mt-10 text-white">
                         {item.new ? "NEW PRODUCT" : ""}
                     </span> 
                     <h1 className="text-white text-4xl uppercase font-semibold mt-8">

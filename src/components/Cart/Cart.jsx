@@ -77,19 +77,29 @@ const Cart = ({ setCartOpen }) => {
                             </div>
                         )
                     })}
-                    <div id="cart-total" className="grid grid-cols-3 relative mt-4 mb-4">
-                        <div className="text-left col-span-2">
-                            TOTAL
+                    {cartItems.length > 0 ?
+                      <div>
+                        <div id="cart-total" className="grid grid-cols-3 relative mt-4 mb-4">
+                            <div className="text-left col-span-2">
+                                TOTAL
+                            </div>
+                            <div className="text-right">
+                                {getCartTotal()} €
+                            </div>
                         </div>
-                        <div className="text-right">
-                            {getCartTotal()} €
+                        <div className="flex justify-center text-center pt-4 pb-6">
+                            <Link className="see-product-orange-btn w-full" onClick={() => {setCartOpen(false)}} to={"/checkout"} >
+                                CHECKOUT
+                            </Link>
                         </div>
-                    </div>
-                    <div className="flex justify-center text-center pt-4 pb-6">
-                        <Link className="see-product-orange-btn w-full" onClick={() => {setCartOpen(false)}} to={"/checkout"} >
-                            CHECKOUT
+                      </div>
+                      : 
+                      <div>
+                        <Link to="/" onClick={() => {setCartOpen(false)}} className="see-product-orange-btn flex justify-center text-center pt-4 mb-4">
+                          BACK TO HOME
                         </Link>
-                    </div>
+                      </div>
+                    }
                 </div>
             </div>
         </>

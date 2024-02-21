@@ -25,6 +25,10 @@ const ProductPage = ({setCartOpen}) => {
         goToTop()
     }, [])
 
+    //Popup style
+    const contentStyle = { background: 'transparent' };
+    const overlayStyle = { background: 'rgba(0,0,0,0.6)' };
+
     return(
         <>
             <button id="go-back-button" className="pl-6 pt-4 text-[#6e6e6e]" onClick={() => navigate(-1)}>
@@ -72,18 +76,19 @@ const ProductPage = ({setCartOpen}) => {
                     closeOnDocumentClick 
                     position="top center"
                     modal
+                    {...{contentStyle, overlayStyle}}
                 >        
-                    <div className="p-8 text-center bg-black text-white relative rounded-md">          
-                        <button className="absolute top-0 right-3 text-2xl" onClick={closeModal}> 
+                    <div className="p-8 text-center bg-white text-[#D87D4A] relative rounded-md">          
+                        <button className="absolute top-0 right-3 text-2xl text-gray-600" onClick={closeModal}> 
                             &times;
                         </button>
-                        <div className="text-orange-300 mt-2">
+                        <div className="text-gray-600 mt-2">
                             {numberOfItems + " x " + item.name}
                         </div>
                         <span>
                             added to the cart
                         </span>
-                        <button onClick={() => setCartOpen(true)} className="mt-6 w-10/12 m-auto pt-2 pb-2 bg-white hover:bg-[#D87D4A] text-[#D87D4A] hover:text-white rounded-sm">
+                        <button onClick={() => setCartOpen(true)} className="mt-6 w-10/12 m-auto pt-2 pb-2 bg-[#D87D4A] hover:bg-[#D87D4A] text-white hover:text-white rounded-sm">
                                 Open Cart
                         </button>
                     </div>      

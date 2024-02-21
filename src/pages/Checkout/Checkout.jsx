@@ -6,15 +6,18 @@ import CustomInputText from "../../components/CustomInputText";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import CustomRadioButton from "../../components/CustomRadioButton";
+import Popup from "reactjs-popup";
+import CheckoutConfirmation from "./CheckoutConfirmation";
 
 
-const Checkout = ({setCheckoutModal}) => { 
+const Checkout = () => { 
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal, getShippingCost, getTotalVAT } = useContext(CartContext)
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [checkoutModal, setCheckoutModal] = useState(false);
 
-  const initialValues = {
+  const initialValues = { //FILLED FOR TESTING PURPOSES ONLY
     name: "dsfaf",
     email: "huifhdsfds@jdsaio.com",
     phonenumber: 357153242, //undefined
@@ -66,16 +69,18 @@ const Checkout = ({setCheckoutModal}) => {
   });
 
   const handleSubmit = async (values) => {
-    const errors = await checkoutSchema.validate(values);
-    console.log("HANDLe")
-    if (errors) {
-      console.log(errors)
+    const formValues = await checkoutSchema.validate(values);
+    if (formValues) {
+      setCheckoutModal(true)
     } else {
-      alert("Submitting form successfully")
+      alert("Error submitting the form, please try again.")
     }
   };
 
- 
+  //Popup style
+  const contentStyle = { background: 'transparent' };
+  const overlayStyle = { background: 'rgba(0,0,0,0.6)' };
+
   return (
     <>
       <div className="pl-6 pt-4 text-[#8c8c8c] font-medium text-lg">
@@ -84,6 +89,15 @@ const Checkout = ({setCheckoutModal}) => {
         </Link>
       </div>
       <section className="ml-6 mr-6 pl-6 pr-6 mt-4 pt-4 rounded-md bg-white">
+        <Popup 
+          open={checkoutModal}
+          onClose={() => setCheckoutModal(false)}
+          position="top center"
+          modal
+          {...{contentStyle, overlayStyle}}
+        >
+          <CheckoutConfirmation/>
+        </Popup>
         <h1 className="font-bold text-2xl tracking-wider">
           CHECKOUT
         </h1>

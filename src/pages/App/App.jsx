@@ -29,64 +29,68 @@ export const App = () => {
         window.scrollTo({top:0, behavior: 'smooth'})
     }
 
+    //Popup style
+    const contentStyle = { background: 'transparent' };
+    const overlayStyle = { background: 'rgba(0,0,0,0.6)' };
+
     return(
         <>
-            <div id='wrapper' className='font-manrope h-auto w-full'>
-                <div id='header' className="pt-10 grid grid-cols-3 pl-6 pr-6 pb-6 bg-black">
-                    <MobileView>
-                        <button className='flex justify-start' onClick={() => {setMobileMenuIsOpen(!mobileMenuIsOpen)}}>
-                            <HamburguerIcon/>
-                        </button> 
-                    </MobileView>
-                    <div className='flex justify-center'>
-                        <Link to="/" >
-                            <LogoIcon/>
-                        </Link>
-                    </div>
-                    <BrowserView>
-                        <Menu/>
-                    </BrowserView>
-                    <button className='flex justify-end' onClick={() => (setCartOpen(true), setMobileMenuIsOpen(false))}>
-                        <CartIcon/>
-                    </button>
-                    <Popup 
-                        open={cartOpen}
-                        onClose={() => setCartOpen(false)}
-                        position="top center"
-                        modal
-                    >
-                        <Cart setCartOpen={setCartOpen}/>
-                    </Popup>
-                    <Popup 
-                        open={checkoutModal}
-                        onClose={() => (setCheckoutModal(false), goToTop())}
-                        position="top center"
-                        modal
-                    >
-                        <CheckoutModal setCheckoutModal={setCheckoutModal}/>
-                    </Popup>
+          <div id='wrapper' className='font-manrope h-auto w-full'>
+            <div id='header' className="pt-10 grid grid-cols-3 pl-6 pr-6 pb-6 bg-black">
+              <MobileView>
+                  <button className='flex justify-start' onClick={() => {setMobileMenuIsOpen(!mobileMenuIsOpen)}}>
+                      <HamburguerIcon/>
+                  </button> 
+              </MobileView>
+              <div className='flex justify-center'>
+                  <Link to="/" >
+                      <LogoIcon/>
+                  </Link>
+              </div>
+              <BrowserView>
+                  <Menu/>
+              </BrowserView>
+              <button className='flex justify-end' onClick={() => (setCartOpen(true), setMobileMenuIsOpen(false))}>
+                  <CartIcon/>
+              </button>
+              <Popup 
+                  open={cartOpen}
+                  onClose={() => setCartOpen(false)}
+                  position="top center"
+                  modal
+                  {...{contentStyle, overlayStyle}}
+              >
+                <Cart setCartOpen={setCartOpen}/>
+              </Popup>
+              <Popup 
+                  open={checkoutModal}
+                  onClose={() => (setCheckoutModal(false), goToTop())}
+                  position="top center"
+                  modal
+                  {...{contentStyle, overlayStyle}}
+              >
+                  <CheckoutModal setCheckoutModal={setCheckoutModal}/>
+              </Popup>
+              </div>
+              <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>
+              {mobileMenuIsOpen ? 
+                <div className='absolute top-24 left-0 bg-black bg-opacity-60 w-screen h-[125rem]'>
+                  <div className='bg-white w-screen pb-10 pl-6 pr-6 pt-2 rounded-b-lg'>
+                      <CategoriesGrid mobileMenuIsOpen={mobileMenuIsOpen} closeMobileMenu={closeMobileMenu}/>
+                  </div>
                 </div>
-                <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>
-                {mobileMenuIsOpen ? 
-                    <div className='absolute top-24 left-0 bg-black bg-opacity-60 w-screen h-[125rem]'>
-                        <div className='bg-white w-screen pb-10 pl-6 pr-6 pt-2 rounded-b-lg'>
-                            <CategoriesGrid mobileMenuIsOpen={mobileMenuIsOpen} closeMobileMenu={closeMobileMenu}/>
-                        </div>
-                    </div>
-                    :   
-                    ""
-                }
-            </div>
-            <div id="cart-blur" className={cartOpen || checkoutModal ? 'bg-black opacity-40' : "bg-[#f9f9f9]"}>
-                <Routes>
-                    <Route path='/' element={ <Layout/>} />
-                    <Route index element={<Home mobileMenuIsOpen={mobileMenuIsOpen} closeMobileMenu={closeMobileMenu}/>} />
-                    <Route path="category" element={<Category />}/>
-                    <Route path="product-page" element={<ProductPage setCartOpen={setCartOpen}/>} />
-                    <Route path="checkout" element={<Checkout setCheckoutModal={setCheckoutModal}/>} />
-                </Routes>
-                <Footer/>
-            </div>
+                :   
+                ""
+              }
+          </div>
+          <Routes>
+            <Route path='/' element={ <Layout/>} />
+            <Route index element={<Home mobileMenuIsOpen={mobileMenuIsOpen} closeMobileMenu={closeMobileMenu}/>} />
+            <Route path="category" element={<Category />}/>
+            <Route path="product-page" element={<ProductPage setCartOpen={setCartOpen}/>} />
+            <Route path="checkout" element={<Checkout setCheckoutModal={setCheckoutModal}/>} />
+          </Routes>
+          <Footer/>
         </>
     )
  }

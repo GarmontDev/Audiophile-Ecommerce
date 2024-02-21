@@ -54,7 +54,7 @@ export const App = () => {
                 </div>
                 <hr className="h-px w-full bg-[#555555] border-0 opacity-100"/>
                 {mobileMenuIsOpen ? 
-                    <div className='absolute top-24 left-0 bg-black bg-opacity-60 w-screen h-[125rem]'>
+                    <div className='absolute top-24 left-0 bg-black bg-opacity-100 w-screen h-[125rem]'>
                         <div className='bg-white w-screen pb-10 pl-6 pr-6 pt-2 rounded-b-lg'>
                             <CategoriesGrid mobileMenuIsOpen={mobileMenuIsOpen} setMobileMenuIsOpen={setMobileMenuIsOpen}/>
                         </div>
